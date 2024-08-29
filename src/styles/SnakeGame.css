@@ -1,0 +1,19 @@
+.board {
+  display: flex;
+  flex-direction: column; /* Align rows vertically */
+  width: 300px; /* Set the desired width of the board */
+  height: 300px; /* Set the desired height of the board */
+  border: 2px solid black; /* Optional: border around the board */
+}
+
+.row {
+  display: flex; /* Align squares horizontally within the row */
+  flex: 1; /* Allow rows to be equally distributed within the board */
+}
+
+.square {
+  background-color: lightgray; /* Default background color */
+  border: 1px solid darkgray; /* Optional: border around each square */
+  width: 100%; /* Make the square take up the full width of the grid cell */
+  height: 100%; /* Make the square take up the full height of the grid cell */
+}
