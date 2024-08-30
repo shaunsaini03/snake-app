@@ -11,9 +11,19 @@
   flex: 1; /* Allow rows to be equally distributed within the board */
 }
 
-.square {
-  background-color: lightgray; /* Default background color */
-  border: 1px solid darkgray; /* Optional: border around each square */
+
+.cell {
+  background-color: white; /* Default background color */
   width: 100%; /* Make the square take up the full width of the grid cell */
   height: 100%; /* Make the square take up the full height of the grid cell */
+}
+
+.snake {
+  background-color: green;
+}
+
+.food {
+  background-color: brown;
+  width: 100%;
+  height: 100%;
 }
