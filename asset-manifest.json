@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/snake-app/static/css/main.d1802178.css",
+    "main.js": "/snake-app/static/js/main.af97c7e1.js",
+    "static/js/453.05d775a6.chunk.js": "/snake-app/static/js/453.05d775a6.chunk.js",
+    "index.html": "/snake-app/index.html",
+    "main.d1802178.css.map": "/snake-app/static/css/main.d1802178.css.map",
+    "main.af97c7e1.js.map": "/snake-app/static/js/main.af97c7e1.js.map",
+    "453.05d775a6.chunk.js.map": "/snake-app/static/js/453.05d775a6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d1802178.css",
+    "static/js/main.af97c7e1.js"
+  ]
+}
