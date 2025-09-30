@@ -4,13 +4,18 @@ import '../styles/SnakeGame.css'; // Create a CSS file for styling
 const BOARD_SIZE = 10
 
 
-const Board = () => {
+
+
+const Board = ({ ai = false }) => {
   const [snake, setSnake] = useState([{ x: 0, y: 0 }]); // Initial snake position
   const [food, setFood] = useState(() => generateFoodPosition());
   const [direction, setDirection] = useState({x: 1, y: 0}); // Initial direction
   const [gameOver, setGameOver] = useState(false);
-  const [score, setScore] = useState(0)
   const [speed, setSpeed] = useState(1000)
+
+
+  //scores
+  const [score, setScore] = useState(0)
   const [highScore, setHighScore] = useState(0)
 
   useEffect(() => {

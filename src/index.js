@@ -1,18 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import SnakeGame from './components/SnakeGame';
-import Board from './components/SnakeGame';
+// index.js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import reportWebVitals from "./reportWebVitals";
+
+import Home from "./pages/Home";
+import SnakeGame from "./components/SnakeGame";
+import HowToPlay from "./pages/HowToPlay";
+import GamePage from "./pages/GamePage";
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Board />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/play" element={<GamePage mode="human" />} />
+        <Route path="/play-ai" element={<GamePage mode="ai" />} />
+        {/* <Route path="/how-to" element={<HowToPlay />} /> */}
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

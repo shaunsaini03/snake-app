@@ -1,0 +1,28 @@
+.board {
+    display: inline-block;
+    border: 3px solid #333;
+    background-color: #111;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  }
+  
+  .row {
+    display: flex; /* make cells in a row line up horizontally */
+  }
+  
+  .cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #222; /* subtle grid lines */
+    background-color: #111; /* board background */
+    transition: background-color 0.1s ease; /* smooth change */
+  }
+  
+  .cell.snake {
+    background-color: #4caf50; /* green snake */
+  }
+  
+  .cell.food {
+    background-color: #e53935; /* red food */
+  }
+  
