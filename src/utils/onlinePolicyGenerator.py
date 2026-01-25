@@ -6,7 +6,8 @@ import os
 import json
 
 # setup
-NUM_ITERATIONS = 1000
+NUM_ITERATIONS = 100000
+EPS = 0.1
 BOARD_SIZE = 10
 DIRS = {
     'UP':    { 'x': -1, 'y': 0 },
@@ -101,7 +102,7 @@ class SimplifiedGameState:
             any(seg['x'] == new_head['x'] and seg['y'] == new_head['y'] for seg in self.snake)
         ):
             self.done = True
-            return self.get_features(), -10, True
+            return self.get_features(), -15, True
 
         # advance snake
         self.snake.insert(0, new_head)
@@ -164,15 +165,55 @@ def create_policy(num_iterations, q_table, epsilon=0.1):
 
 
 def to_json(updated_q_table, file_name):
-    updated_q_table_json = {str(key): val for (key, val) in updated_q_table.items()}
+    """
+    Export Q-table as:
+    {
+      "dir|food|danger_left|danger_right|danger_straight": {
+        "l": value,
+        "r": value,
+        "s": value
+      }
+    }
+    """
+    policy = {}
+
+    for (state, action), value in updated_q_table.items():
+        # state = (dir, food_dir, danger_left, danger_right, danger_straight)
+        state_key = f"{state[0]}|{state[1]}|{state[2]}|{state[3]}|{state[4]}"
+
+        if state_key not in policy:
+            policy[state_key] = {}
+
+        policy[state_key][action] = value
+
     file_path = os.path.join(FILE_DIRECTORY, file_name)
     os.makedirs(FILE_DIRECTORY, exist_ok=True)
 
-    with open(file_path, 'w') as json_file:
-        json.dump(updated_q_table_json, json_file)
+    with open(file_path, "w") as f:
+        json.dump(policy, f, indent=2)
+
+    print(f"Exported {len(policy)} states")
+
     
 
 
 
     
 
+if __name__ == "__main__":
+    num_iterations = NUM_ITERATIONS
+    eps = EPS
+
+    print(f"Training Q-table for {num_iterations} episodes...")
+
+    q_table = create_q_table()
+    trained_q_table = create_policy(
+        num_iterations=num_iterations,
+        q_table=q_table,
+        epsilon=EPS
+    )
+
+    output_file = f"{num_iterations}_iter_q_learning_table.json"
+    to_json(trained_q_table, output_file)
+
+    print(f"Saved policy to policies/{output_file}")
